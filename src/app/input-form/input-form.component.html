@@ -1,0 +1,56 @@
+<div class="popUpClass">
+    <div class="overlay" >
+        <div class="close-btn">
+            <i (click)="closePopUp()" class="bi bi-x"></i>
+        </div>
+        <form *ngIf="header=='TO_DO'" [formGroup]="inputForm" class="form-area">
+    <div class="form-unit">
+        <label class="label-cls">Task Title</label> 
+        <input formControlName="TITLE" />
+    </div>
+    <div class="form-unit">
+        <label  class="label-cls">Task Description</label> 
+        <textarea formControlName="DESC"></textarea>
+    </div>
+    <div class="form-unit">
+        <label  class="label-cls">Priority</label> 
+        <select formControlName="PRIORITY">
+            <option>Average</option>
+            <option>High</option>
+            <option>Critical</option>
+        </select>
+    </div>
+    <div class="form-unit">
+        <label  class="label-cls">Upload Image</label> 
+        <input style=" width: 50%;" formControlName="FILE" type='file'  />
+    </div>
+    <!-- <div class="form-unit" >
+        <label  class="label-cls"></label> 
+        <input/>
+    </div> -->
+    <button class="submit-btn" [disabled]="inputForm.invalid"  (click)="formSubmit()">Submit</button>
+</form>
+
+<form *ngIf="header=='PROGRESS'">
+    <div>
+        <label  class="label-cls">Select the task</label>
+        <select #task>
+           
+            <option  *ngFor="let data of commService.formData">{{data?.TITLE}} </option>
+       
+        </select>
+        <div>
+            <label >Select the status</label>
+            <select #status>
+                <option value="TO_DO">To Do</option>
+                <option value="PROGRESS">In Progress</option>
+                <option value="COMPLETE">Complete</option>
+            </select>
+        </div>
+    </div>
+    <button (click)="submit2(task.value,status.value)" class="submit-btn"   >
+        Submit
+    </button>
+</form>
+</div>
+</div>

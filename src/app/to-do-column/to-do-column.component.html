@@ -1,0 +1,85 @@
+<div class="content-col">
+    <div class="section-header">
+        <label>
+            {{headerLabel=='TO_DO'?'To Do':headerLabel=='PROGRESS'?'In Progress':'Complete'}}
+        </label>
+        <label  class="count-label">
+            {{headerLabel=='TO_DO'?commService.getCount('TO_DO'):headerLabel=='PROGRESS'?commService.getCount('PROGRESS'):commService.getCount('COMPLETE')}}
+        </label>
+    </div>
+<div *ngIf="headerLabel!='COMPLETE'" class="plus-btn">
+   <!-- <button (click)="openPopUp()">
+    +
+   </button> -->
+   <i  (click)="openPopUp()" class="bi bi-file-plus"></i>
+</div>
+
+<ng-container *ngIf="headerLabel=='TO_DO' && commService.getCount('TO_DO')>0">
+    <div class="card" *ngFor="let data of commService?.todoForm?.controls">
+      <ng-container *ngIf="data?.controls?.STATUS?.value=='TO_DO'">
+        <div>
+            <label class="break-word" >{{data?.controls?.TITLE?.value}}</label>
+        </div>
+        <div>
+            <p class="break-word">{{data?.controls?.DESC?.value}}</p>
+        </div>
+        <div>
+            <label class="break-word" >{{data?.controls?.PRIORITY?.value}}</label>
+        </div>
+        <div>
+            <a target="_blank" href="data?.controls?.FILE?.value" ><i class="bi bi-files"></i></a>
+        </div>
+    </ng-container> 
+
+    </div>
+</ng-container>
+<ng-container *ngIf="headerLabel=='PROGRESS' && commService.getCount('PROGRESS')>0">
+    <div class="card" *ngFor="let data of commService?.todoForm?.controls">
+      <ng-container *ngIf="data?.controls?.STATUS?.value=='PROGRESS'">
+        <div>
+            <label class="break-word" >{{data?.controls?.TITLE?.value}}</label>
+        </div>
+        <div>
+            <p  class="break-word">{{data?.controls?.DESC?.value}}</p>
+        </div>
+        <div>
+            <label class="break-word" >{{data?.controls?.PRIORITY?.value}}</label>
+        </div>
+        <div>
+            <a target="_blank" href="data?.controls?.FILE?.value" ><i class="bi bi-files"></i></a>
+        </div>
+    </ng-container> 
+
+    </div>
+</ng-container>
+
+<ng-container *ngIf="headerLabel=='COMPLETE'  && commService.getCount('COMPLETE')>0">
+    <div class="card" *ngFor="let data of commService?.todoForm?.controls">
+      <ng-container *ngIf="data?.controls?.STATUS?.value=='COMPLETE'">
+        <div>
+            <label class="break-word" >{{data?.controls?.TITLE?.value}}</label>
+        </div>
+        <div>
+            <p class="break-word" >{{data?.controls?.DESC?.value}}</p>
+        </div>
+        <div>
+            <label class="break-word" >{{data?.controls?.PRIORITY?.value}}</label>
+        </div>
+        <div>
+            <a target="_blank" href="data?.controls?.FILE?.value" ><i class="bi bi-files"></i></a>
+        </div>
+    </ng-container> 
+
+    </div>
+</ng-container>
+</div>
+
+
+<div *ngIf="popUpFlag">
+<app-input-form [header]="headerLabel"
+ (close)="closePopUp($event)"
+  (submitForm)="listenSubmitEvent($event)"
+  [toDoStatus]="IN_PROG"
+  (changeEvent)="changeStatus($event)"
+  ></app-input-form>
+</div>
