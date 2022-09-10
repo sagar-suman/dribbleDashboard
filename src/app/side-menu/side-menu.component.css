@@ -38,7 +38,12 @@ width: 70%;
 }
 .flex-item:hover{
   border-right:4px solid green;
+  font-size: larger;
 }
+.flex-item:active{
+    border-right:4px solid green;
+    font-size: larger;
+  }
 .heading{
     margin:10% 0% 20% 0%;
 }

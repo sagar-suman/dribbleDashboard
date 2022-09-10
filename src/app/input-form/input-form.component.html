@@ -14,7 +14,7 @@
     </div>
     <div class="form-unit">
         <label  class="label-cls">Priority</label> 
-        <select formControlName="PRIORITY">
+        <select  style="width: 34%; text-align: center;" formControlName="PRIORITY">
             <option>Average</option>
             <option>High</option>
             <option>Critical</option>
@@ -28,28 +28,38 @@
         <label  class="label-cls"></label> 
         <input/>
     </div> -->
+   
     <button class="submit-btn" [disabled]="inputForm.invalid"  (click)="formSubmit()">Submit</button>
+    <button (click)="closePopUp()" class="submit-btn"   >
+        Cancel
+    </button>
 </form>
 
 <form *ngIf="header=='PROGRESS'">
     <div>
+        <div class="form-unit">
         <label  class="label-cls">Select the task</label>
-        <select #task>
+        <select  style="width: 34%; text-align: center;"  #task>
            
             <option  *ngFor="let data of commService.formData">{{data?.TITLE}} </option>
        
         </select>
-        <div>
-            <label >Select the status</label>
-            <select #status>
+    </div>
+        <div class="form-unit">
+            <label class="label-cls"  >Select the status</label>
+            <select style="width: 34%;text-align: center;" #status>
                 <option value="TO_DO">To Do</option>
                 <option value="PROGRESS">In Progress</option>
                 <option value="COMPLETE">Complete</option>
             </select>
         </div>
     </div>
+  
     <button (click)="submit2(task.value,status.value)" class="submit-btn"   >
         Submit
+    </button>
+    <button (click)="closePopUp()" class="submit-btn"   >
+        Cancel
     </button>
 </form>
 </div>
