@@ -21,6 +21,8 @@
     width: inherit;
     height: 35px;
     text-indent: 30px;
+    border-radius: 10px;
+    border-color: transparent;
 }
 .input-cls::placeholder{
     text-align: left;
@@ -29,7 +31,8 @@
 }
 
 .grow-font{
-    font-size: 35px;
+    font-size: 30px;
+    
 }
 
 .search{

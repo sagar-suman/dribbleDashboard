@@ -6,15 +6,21 @@
         <form *ngIf="header=='TO_DO'" [formGroup]="inputForm" class="form-area">
     <div class="form-unit">
         <label class="label-cls">Task Title</label> 
-        <input formControlName="TITLE" />
+        <input
+        [ngClass]="inputForm.get('TITLE').touched && inputForm.get('TITLE').hasError('required')?'err':''"
+        formControlName="TITLE" />
     </div>
     <div class="form-unit">
         <label  class="label-cls">Task Description</label> 
-        <textarea formControlName="DESC"></textarea>
+        <textarea 
+        [ngClass]="inputForm.get('DESC').touched && inputForm.get('DESC').hasError('required')?'err':''"
+        formControlName="DESC"></textarea>
     </div>
     <div class="form-unit">
         <label  class="label-cls">Priority</label> 
-        <select  style="width: 34%; text-align: center;" formControlName="PRIORITY">
+        <select
+        [ngClass]="inputForm.get('PRIORITY').touched && inputForm.get('PRIORITY').hasError('required')?'err':''"
+        style="width: 34%; text-align: center;" formControlName="PRIORITY">
             <option>Average</option>
             <option>High</option>
             <option>Critical</option>
